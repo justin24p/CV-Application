@@ -1,0 +1,7 @@
+.resume {
+    display: grid;
+    justify-content: center;
+    width: 500px;
+    border: 2px solid white;
+    height: 700px;
+}

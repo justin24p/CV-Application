@@ -1,0 +1,6 @@
+.personal {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    padding: 20px 40px 40px 40px;
+}
