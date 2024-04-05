@@ -32,7 +32,7 @@ export default function Personal({ personalData, handlePersonalChange }) {
                 type="text"
                 name="address"
                 id="address"
-                value={personalData.addres}
+                value={personalData.address}
                 onChange={handlePersonalChange}
             />
         </div>

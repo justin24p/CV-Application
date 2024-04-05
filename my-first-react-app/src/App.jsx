@@ -1,23 +1,53 @@
 import Personal from "./components/personal";
-import Education from "./components/education";
 import Experience from "./components/experience";
+import Resume from "./components/resume";
+import { useState } from "react";
+import EducationInput from "./components/education";
+//css
 import "./App.css";
 import "./styles/resume.css";
-import { useCallback, useState } from "react";
+
 function App() {
-    //personal
+    //personal Data
     const [personalData, setPersonalData] = useState({
         fullName: "",
         email: "",
         phone: "",
         address: "",
     });
+    // Education Data
+    const [educationData, setEducationData] = useState({
+        school: "",
+        degree: "",
+        startDate: "",
+        endDate: "",
+        area: "",
+    });
+    const handleEducationChange = (e) => {
+        const { name, value } = e.target;
+        setEducationData((prevdata) => ({
+            ...prevdata,
+            [name]: value,
+        }));
+    };
+
     const handlePersonChange = (e) => {
         const { name, value } = e.target;
         setPersonalData((prevdata) => ({
             ...prevdata,
             [name]: value,
         }));
+    };
+    // Toggle handler for education could be refactored to not use state for button only form
+    const [showbutton, setShowButton] = useState(false);
+    const [showform, setShowForm] = useState(false);
+
+    const toggleButton = () => {
+        setShowButton(!showbutton);
+    };
+    const handeEducation = () => {
+        setShowForm(true);
+        setShowButton(false);
     };
 
     return (
@@ -27,23 +57,30 @@ function App() {
                     personalData={personalData}
                     handlePersonalChange={handlePersonChange}
                 ></Personal>
-                <Education></Education>
                 <Experience></Experience>
+                <div className="education">
+                    <h1>Education</h1>
+                    <button onClick={toggleButton}>^</button>
+                    {showbutton && (
+                        <button onClick={handeEducation}>Education +</button>
+                    )}
+                    {showform && (
+                        <EducationInput
+                            educationData={educationData}
+                            handleEducationChange={handleEducationChange}
+                        ></EducationInput>
+                    )}
+                </div>
             </div>
-            <div className="resume">
-                <h2>{personalData.fullName}</h2>
-                <ul>
-                    {Object.keys(personalData).map((key) => {
-                        if (key != "fullName") {
-                            return <p key={key}>{personalData[key]}</p>;
-                        } else {
-                            return null;
-                        }
-                    })}
-                </ul>
-            </div>
+            <Resume
+                personalData={personalData}
+                educationData={educationData}
+            ></Resume>
         </div>
     );
 }
 
 export default App;
+//the current education etc experience will handle if the componenet is shown or not
+// however we will declare the state of education and experince forms in here
+// so we can easily pass the state to our main resume

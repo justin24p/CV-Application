@@ -1,7 +1,25 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
 .resume {
     display: grid;
     justify-content: center;
-    width: 500px;
+    align-items: center;
+    grid-template-rows: 100px 1fr;
+    width: 600px;
     border: 2px solid white;
     height: 700px;
+}
+.header {
+    display: flex;
+    flex-direction: column;
+}
+.contact-info {
+    display: flex;
+    gap: 2rem;
+}
+.resume h2 {
+    align-self: center;
 }
