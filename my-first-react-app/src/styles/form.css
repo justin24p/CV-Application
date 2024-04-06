@@ -1,0 +1,27 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    padding: 20px 40px 40px 40px;
+    border-radius: 8px;
+}
+.form input[type="text"],
+.form input[type="password"],
+.form input[type="email"],
+.form input[type="number"],
+.form textarea {
+    border-radius: 10px; /* Adjust the value to make it rounder */
+    padding: 8px 12px; /* Optional: Adjust padding for better appearance */
+    border-style: none;
+}
+.sectionButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.pairButtons button:first-child {
+    margin-right: 1rem;
+}
+.pairButtons button:last-child {
+    background-color: rgb(34, 193, 245);
+}

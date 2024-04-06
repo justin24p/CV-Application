@@ -3,7 +3,7 @@ export default function EducationInput({
     handleEducationChange,
 }) {
     return (
-        <div className="personal">
+        <div className="form">
             <label htmlFor="school">school</label>
             <input
                 type="text"
@@ -44,6 +44,13 @@ export default function EducationInput({
                 value={educationData.location}
                 onChange={handleEducationChange}
             />
+            <div className="sectionButtons">
+                <button>Delete</button>
+                <div className="pairButtons">
+                    <button>Cancel</button>
+                    <button>Save</button>
+                </div>
+            </div>
         </div>
     );
 }

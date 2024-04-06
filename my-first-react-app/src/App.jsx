@@ -77,19 +77,18 @@ function App() {
     };
     return (
         <div className="app">
-            <div className="App">
+            <div>
                 <Personal
                     personalData={personalData}
                     handlePersonalChange={handlePersonChange}
                 ></Personal>
-                <div className="experience">
-                    <h1>Experience</h1>
-                    <button onClick={toggleDiv2}>^</button>
+                <div className=" experience">
+                    <button onClick={toggleDiv2}>Experience ˅</button>
                     {showdiv2 && (
                         <div>
                             {!showform2 && (
                                 <button onClick={handleExperience}>
-                                    Education +
+                                    Experience +
                                 </button>
                             )}
                             {showform2 && (
@@ -104,8 +103,7 @@ function App() {
                     )}
                 </div>
                 <div className="education">
-                    <h1>Education</h1>
-                    <button onClick={toggleDiv}>^</button>
+                    <button onClick={toggleDiv}>Education ˅</button>
                     {showdiv && (
                         <div>
                             {!showform && (
@@ -128,6 +126,9 @@ function App() {
             <Resume
                 personalData={personalData}
                 educationData={educationData}
+                experienceData={experienceData}
+                showform2={showform2}
+                showform={showform}
             ></Resume>
         </div>
     );

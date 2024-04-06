@@ -3,13 +3,14 @@ export default function ExperienceForm({
     handleExperienceChange,
 }) {
     return (
-        <div className="personal">
+        <div className="form">
+            <h1>Experience</h1>
             <label htmlFor="Company">Company Name</label>
             <input
                 type="text"
-                name="Company"
-                id="Company"
-                value={experienceData.Company}
+                name="companyName"
+                id="companyName"
+                value={experienceData.companyName}
                 onChange={handleExperienceChange}
             />
             <label htmlFor="Position Title">Position Title</label>
@@ -52,6 +53,13 @@ export default function ExperienceForm({
                 value={experienceData.description}
                 onChange={handleExperienceChange}
             />
+            <div className="sectionButtons">
+                <button>Delete</button>
+                <div className="pairButtons">
+                    <button>Cancel</button>
+                    <button>Save</button>
+                </div>
+            </div>
         </div>
     );
 }

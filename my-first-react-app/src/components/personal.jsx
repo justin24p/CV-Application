@@ -1,7 +1,7 @@
-import "../styles/personal.css";
+import "../styles/form.css";
 export default function Personal({ personalData, handlePersonalChange }) {
     return (
-        <div className="personal">
+        <div className="form">
             <h1>Personal Details</h1>
             <label htmlFor="fullName">FullName</label>
             <input
@@ -21,7 +21,7 @@ export default function Personal({ personalData, handlePersonalChange }) {
             />
             <label htmlFor="phone">Phone number</label>
             <input
-                type="tel"
+                type="number"
                 name="phone"
                 id="phone"
                 value={personalData.phone}
