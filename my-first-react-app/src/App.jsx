@@ -5,6 +5,7 @@ import EducationInput from "./components/education";
 import ExperienceForm from "./components/experience";
 //css
 import "./App.css";
+import "./styles/navigation.css";
 import "./styles/resume.css";
 
 function App() {
@@ -76,65 +77,65 @@ function App() {
         setShowForm2(true);
     };
     return (
-        <div className="app">
-            <div>
-                <Personal
+        <div>
+            <div className="nav">navigation</div>
+            <div className="app">
+                <div className="sidemenu">
+                    <Personal
+                        personalData={personalData}
+                        handlePersonalChange={handlePersonChange}
+                    ></Personal>
+                    <div className="education">
+                        <button onClick={toggleDiv}>Education ˅</button>
+                        {showdiv && (
+                            <div>
+                                {!showform && (
+                                    <button onClick={handleEducation}>
+                                        Education +
+                                    </button>
+                                )}
+                                {showform && (
+                                    <EducationInput
+                                        educationData={educationData}
+                                        handleEducationChange={
+                                            handleEducationChange
+                                        }
+                                    ></EducationInput>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                    <div className=" experience">
+                        <button onClick={toggleDiv2}>Experience ˅</button>
+                        {showdiv2 && (
+                            <div>
+                                {!showform2 && (
+                                    <button onClick={handleExperience}>
+                                        Experience +
+                                    </button>
+                                )}
+                                {showform2 && (
+                                    <ExperienceForm
+                                        experienceData={experienceData}
+                                        handleExperienceChange={
+                                            handleExperienceChange
+                                        }
+                                    ></ExperienceForm>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <Resume
                     personalData={personalData}
-                    handlePersonalChange={handlePersonChange}
-                ></Personal>
-                <div className=" experience">
-                    <button onClick={toggleDiv2}>Experience ˅</button>
-                    {showdiv2 && (
-                        <div>
-                            {!showform2 && (
-                                <button onClick={handleExperience}>
-                                    Experience +
-                                </button>
-                            )}
-                            {showform2 && (
-                                <ExperienceForm
-                                    experienceData={experienceData}
-                                    handleExperienceChange={
-                                        handleExperienceChange
-                                    }
-                                ></ExperienceForm>
-                            )}
-                        </div>
-                    )}
-                </div>
-                <div className="education">
-                    <button onClick={toggleDiv}>Education ˅</button>
-                    {showdiv && (
-                        <div>
-                            {!showform && (
-                                <button onClick={handleEducation}>
-                                    Education +
-                                </button>
-                            )}
-                            {showform && (
-                                <EducationInput
-                                    educationData={educationData}
-                                    handleEducationChange={
-                                        handleEducationChange
-                                    }
-                                ></EducationInput>
-                            )}
-                        </div>
-                    )}
-                </div>
+                    educationData={educationData}
+                    experienceData={experienceData}
+                    showform2={showform2}
+                    showform={showform}
+                ></Resume>
             </div>
-            <Resume
-                personalData={personalData}
-                educationData={educationData}
-                experienceData={experienceData}
-                showform2={showform2}
-                showform={showform}
-            ></Resume>
         </div>
     );
 }
 
 export default App;
-//the current education etc experience will handle if the componenet is shown or not
-// however we will declare the state of education and experince forms in here
-// so we can easily pass the state to our main resume

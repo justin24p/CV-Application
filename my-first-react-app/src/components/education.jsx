@@ -4,6 +4,7 @@ export default function EducationInput({
 }) {
     return (
         <div className="form">
+            <h1>Education</h1>
             <label htmlFor="school">school</label>
             <input
                 type="text"
