@@ -11,7 +11,7 @@ export default function EducationInput({
                 type="text"
                 name="school"
                 id="school"
-                value={educationData.school}
+                value={educationData}
                 onChange={handleEducationChange}
             />
             <label htmlFor="degree">degree</label>

@@ -3,12 +3,20 @@ import Resume from "./components/resume";
 import { useState } from "react";
 import EducationInput from "./components/education";
 import ExperienceForm from "./components/experience";
+import uniqid from "uniqid";
 //css
 import "./App.css";
 import "./styles/navigation.css";
 import "./styles/resume.css";
 
 function App() {
+    // we have to make each ones of these arrays
+    // then we have a function that when experience plus is clicked it adds a new blank obj into array
+    // keeping that connection between resume and experience comoponenet
+    // if experience save button is clicked the we call some function in here to actually append the permantly
+    // then when experience + is clicked again we create a new obj and push it into array
+    // the hard thing will be making sure when we click on the obk later down it opens the correcty assicaton form
+    // we probaly need uniqueid
     //personal Data
     const [personalData, setPersonalData] = useState({
         fullName: "",
@@ -17,13 +25,32 @@ function App() {
         address: "",
     });
     // Education Data
-    const [educationData, setEducationData] = useState({
-        school: "",
-        degree: "",
-        startDate: "",
-        endDate: "",
-        area: "",
-    });
+    const [educationData, setEducationData] = useState([]);
+
+    //TESTING
+
+    // educatio generator
+    const addEducation = () => {
+        setEducationData((prevEducationData) => [
+            ...prevEducationData,
+            {
+                school: "",
+                degree: "",
+                startDate: "",
+                endDate: "",
+                area: "",
+            },
+        ]);
+    };
+    //handleEducation aka ShowForm
+    const handleEducation = () => {
+        setShowForm(true);
+    };
+    function educationHelperFunction() {
+        addEducation();
+        handleEducation();
+    }
+    //TESTING
     // Experience Data
     const [experienceData, setExperienceData] = useState({
         companyName: "",
@@ -90,9 +117,7 @@ function App() {
     const toggleDiv = () => {
         setShowDiv(!showdiv);
     };
-    const handleEducation = () => {
-        setShowForm(true);
-    };
+
     // Toggle handler for experience
     const [showdiv2, setShowDiv2] = useState(false);
     const [showform2, setShowForm2] = useState(false);
@@ -126,7 +151,7 @@ function App() {
                         {showdiv && (
                             <div>
                                 {!showform && (
-                                    <button onClick={handleEducation}>
+                                    <button onClick={educationHelperFunction}>
                                         Education +
                                     </button>
                                 )}
