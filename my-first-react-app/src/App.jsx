@@ -55,6 +55,33 @@ function App() {
             [name]: value,
         }));
     };
+    const clearEducation = () => {
+        setEducationData({
+            school: "",
+            degree: "",
+            startDate: "",
+            endDate: "",
+            area: "",
+        });
+    };
+    const clearExperience = () => {
+        setExperienceData({
+            companyName: "",
+            positionTitle: "",
+            startDate: "",
+            endDate: "",
+            area: "",
+            description: "",
+        });
+    };
+    function cancelEducation() {
+        clearEducation();
+        setShowForm();
+    }
+    function cancelExperience() {
+        clearExperience();
+        setShowForm2();
+    }
     // Toggle handler for education
     // education button
     const [showdiv, setShowDiv] = useState(false);
@@ -78,7 +105,16 @@ function App() {
     };
     return (
         <div>
-            <div className="nav">navigation</div>
+            <div className="nav">
+                <div className="logo">
+                    <p>CV</p>
+                    <p>-Lite</p>
+                </div>
+                <div className="toggle">
+                    <input type="checkbox" id="check" />
+                    <label htmlFor="check" className="togglebutton"></label>
+                </div>
+            </div>
             <div className="app">
                 <div className="sidemenu">
                     <Personal
@@ -100,6 +136,7 @@ function App() {
                                         handleEducationChange={
                                             handleEducationChange
                                         }
+                                        cancelEducation={cancelEducation}
                                     ></EducationInput>
                                 )}
                             </div>
@@ -120,6 +157,7 @@ function App() {
                                         handleExperienceChange={
                                             handleExperienceChange
                                         }
+                                        cancelExperience={cancelExperience}
                                     ></ExperienceForm>
                                 )}
                             </div>

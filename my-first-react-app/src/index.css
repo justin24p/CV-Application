@@ -6,6 +6,7 @@
     --main-color: rgba(202, 202, 202, 0.211);
     --accent-color: rgba(255, 255, 255, 0.937);
     --font-color: rgba(0, 0, 0, 0.87);
+    --special-color: rgb(34, 193, 245);
     color: var(--font-color);
     background-color: var(--main-color);
 

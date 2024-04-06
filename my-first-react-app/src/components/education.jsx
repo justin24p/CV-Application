@@ -1,6 +1,7 @@
 export default function EducationInput({
     educationData,
     handleEducationChange,
+    cancelEducation,
 }) {
     return (
         <div className="form">
@@ -48,7 +49,7 @@ export default function EducationInput({
             <div className="sectionButtons">
                 <button>Delete</button>
                 <div className="pairButtons">
-                    <button>Cancel</button>
+                    <button onClick={cancelEducation}>Cancel</button>
                     <button>Save</button>
                 </div>
             </div>

@@ -26,5 +26,5 @@
     margin-right: 1rem;
 }
 .pairButtons button:last-child {
-    background-color: rgb(34, 193, 245);
+    background-color: var(--special-color);
 }
