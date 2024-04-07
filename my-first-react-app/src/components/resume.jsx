@@ -1,4 +1,5 @@
 import "../styles/resume.css";
+import EducationResumeContent from "./educationresume";
 
 export default function Resume({
     personalData,
@@ -6,6 +7,7 @@ export default function Resume({
     experienceData,
     showform,
     showform2,
+    education,
 }) {
     return (
         <div className="resume">
@@ -19,9 +21,9 @@ export default function Resume({
                     })}
                 </div>
             </div>
-            <div className="education">
-                {showform && <h1>education</h1>}
-                <div className="contact-info">
+            <div className="educationResume">
+                {(showform || education.length > 0) && <h1>Education</h1>}
+                <div className="educationContent">
                     {Object.keys(educationData).map((obj) => {
                         if (obj !== "fullName") {
                             return <p key={obj}>{educationData[obj]}</p>;

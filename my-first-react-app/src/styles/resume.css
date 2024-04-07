@@ -5,9 +5,8 @@
 
 .resume {
     background-color: var(--accent-color);
-    display: grid;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     margin-left: 40px;
     grid-template-rows: 100px 1fr;
     border: 2px solid white;
@@ -16,13 +15,26 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(100, 100, 148);
     display: flex;
     flex-direction: column;
 }
+.header h2 {
+    align-self: center;
+    font-size: 2.5rem;
+}
 .contact-info {
     display: flex;
+    justify-content: center;
     gap: 2rem;
 }
-.resume h2 {
-    align-self: center;
+.educationResume {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.educationResume h1 {
+    background-color: rgb(100, 100, 148);
 }

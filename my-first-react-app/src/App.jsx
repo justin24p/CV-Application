@@ -3,21 +3,12 @@ import Resume from "./components/resume";
 import { useState } from "react";
 import EducationInput from "./components/education";
 import ExperienceForm from "./components/experience";
-import uniqid from "uniqid";
-//css
+import EducationButton from "./components/educationcontainer";
 import "./App.css";
 import "./styles/navigation.css";
 import "./styles/resume.css";
 
 function App() {
-    // we have to make each ones of these arrays
-    // then we have a function that when experience plus is clicked it adds a new blank obj into array
-    // keeping that connection between resume and experience comoponenet
-    // if experience save button is clicked the we call some function in here to actually append the permantly
-    // then when experience + is clicked again we create a new obj and push it into array
-    // the hard thing will be making sure when we click on the obk later down it opens the correcty assicaton form
-    // we probaly need uniqueid
-    //personal Data
     const [personalData, setPersonalData] = useState({
         fullName: "",
         email: "",
@@ -25,33 +16,26 @@ function App() {
         address: "",
     });
     // Education Data
-    const [educationData, setEducationData] = useState([]);
-
+    const [educationData, setEducationData] = useState({
+        school: "",
+        degree: "",
+        startDate: "",
+        endDate: "",
+        location: "",
+    });
     //TESTING
-
+    const [education, setEducation] = useState([]);
     // educatio generator
-    const addEducation = () => {
-        setEducationData((prevEducationData) => [
-            ...prevEducationData,
-            {
-                school: "",
-                degree: "",
-                startDate: "",
-                endDate: "",
-                area: "",
-            },
-        ]);
+    const saveEducation = () => {
+        setEducation((prevEducation) => [...prevEducation, educationData]);
+        setShowForm(false);
+        clearEducation();
     };
-    //handleEducation aka ShowForm
+
     const handleEducation = () => {
         setShowForm(true);
     };
-    function educationHelperFunction() {
-        addEducation();
-        handleEducation();
-    }
     //TESTING
-    // Experience Data
     const [experienceData, setExperienceData] = useState({
         companyName: "",
         positionTitle: "",
@@ -150,8 +134,13 @@ function App() {
                         <button onClick={toggleDiv}>Education ˅</button>
                         {showdiv && (
                             <div>
+                                {education.length > 0 && (
+                                    <EducationButton
+                                        education={education}
+                                    ></EducationButton>
+                                )}
                                 {!showform && (
-                                    <button onClick={educationHelperFunction}>
+                                    <button onClick={handleEducation}>
                                         Education +
                                     </button>
                                 )}
@@ -162,6 +151,7 @@ function App() {
                                             handleEducationChange
                                         }
                                         cancelEducation={cancelEducation}
+                                        saveEducation={saveEducation}
                                     ></EducationInput>
                                 )}
                             </div>
@@ -190,6 +180,7 @@ function App() {
                     </div>
                 </div>
                 <Resume
+                    education={education}
                     personalData={personalData}
                     educationData={educationData}
                     experienceData={experienceData}

@@ -2,6 +2,7 @@ export default function EducationInput({
     educationData,
     handleEducationChange,
     cancelEducation,
+    saveEducation,
 }) {
     return (
         <div className="form">
@@ -11,7 +12,7 @@ export default function EducationInput({
                 type="text"
                 name="school"
                 id="school"
-                value={educationData}
+                value={educationData.school}
                 onChange={handleEducationChange}
             />
             <label htmlFor="degree">degree</label>
@@ -50,7 +51,7 @@ export default function EducationInput({
                 <button>Delete</button>
                 <div className="pairButtons">
                     <button onClick={cancelEducation}>Cancel</button>
-                    <button>Save</button>
+                    <button onClick={saveEducation}>Save</button>
                 </div>
             </div>
         </div>
