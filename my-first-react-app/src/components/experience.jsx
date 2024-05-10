@@ -2,6 +2,7 @@ export default function ExperienceForm({
     experienceData,
     handleExperienceChange,
     cancelExperience,
+    saveExperience,
 }) {
     return (
         <div className="form">
@@ -58,7 +59,7 @@ export default function ExperienceForm({
                 <button>Delete</button>
                 <div className="pairButtons">
                     <button onClick={cancelExperience}>Cancel</button>
-                    <button>Save</button>
+                    <button onClick={saveExperience}>Save</button>
                 </div>
             </div>
         </div>

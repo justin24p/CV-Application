@@ -7,6 +7,7 @@ import EducationButton from "./components/educationcontainer";
 import "./App.css";
 import "./styles/navigation.css";
 import "./styles/resume.css";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
     const [personalData, setPersonalData] = useState({
@@ -22,14 +23,22 @@ function App() {
         startDate: "",
         endDate: "",
         location: "",
+        id: "",
     });
-    //TESTING
+
     const [education, setEducation] = useState([]);
-    // educatio generator
+    const [experience, setExperience] = useState([]);
+
     const saveEducation = () => {
+        setEducationData((educationData.id = uuidv4()));
         setEducation((prevEducation) => [...prevEducation, educationData]);
         setShowForm(false);
         clearEducation();
+    };
+    const saveExperience = () => {
+        setExperience((prevExperience) => [...prevExperience, experienceData]);
+        setShowForm2(false);
+        clearExperience();
     };
 
     const handleEducation = () => {
@@ -41,7 +50,7 @@ function App() {
         positionTitle: "",
         startDate: "",
         endDate: "",
-        area: "",
+        location: "",
         description: "",
     });
     const handleExperienceChange = (e) => {
@@ -112,6 +121,11 @@ function App() {
     const handleExperience = () => {
         setShowForm2(true);
     };
+    const tester = (id) => {
+        const selectedEducation = education.find((edu) => edu.id === id);
+        setEducationData(selectedEducation);
+        handleEducation();
+    };
     return (
         <div>
             <div className="nav">
@@ -136,6 +150,7 @@ function App() {
                             <div>
                                 {education.length > 0 && (
                                     <EducationButton
+                                        tester={tester}
                                         education={education}
                                     ></EducationButton>
                                 )}
@@ -173,6 +188,7 @@ function App() {
                                             handleExperienceChange
                                         }
                                         cancelExperience={cancelExperience}
+                                        saveExperience={saveExperience}
                                     ></ExperienceForm>
                                 )}
                             </div>
@@ -181,6 +197,7 @@ function App() {
                 </div>
                 <Resume
                     education={education}
+                    experience={experience}
                     personalData={personalData}
                     educationData={educationData}
                     experienceData={experienceData}

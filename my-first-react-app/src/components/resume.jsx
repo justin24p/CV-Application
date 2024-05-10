@@ -1,5 +1,6 @@
 import "../styles/resume.css";
 import EducationResumeContent from "./educationresume";
+import ExperienceResumeContent from "./experienceresume";
 
 export default function Resume({
     personalData,
@@ -8,6 +9,7 @@ export default function Resume({
     showform,
     showform2,
     education,
+    experience,
 }) {
     return (
         <div className="resume">
@@ -21,24 +23,25 @@ export default function Resume({
                     })}
                 </div>
             </div>
-            <div className="educationResume">
+            <div className="resumeHeader">
                 {(showform || education.length > 0) && <h1>Education</h1>}
+                <EducationResumeContent
+                    education={education}
+                ></EducationResumeContent>
                 <div className="educationContent">
                     {Object.keys(educationData).map((obj) => {
-                        if (obj !== "fullName") {
-                            return <p key={obj}>{educationData[obj]}</p>;
-                        }
+                        return <p key={obj}>{educationData[obj]}</p>;
                     })}
                 </div>
             </div>
-            <div className="experience">
-                {showform2 && <h1>experience</h1>}
-                <h2>{experienceData.companyName}</h2>
+            <div className="resumeHeader">
+                {(showform2 || experience.length > 0) && <h1>experience</h1>}
+                <ExperienceResumeContent
+                    experience={experience}
+                ></ExperienceResumeContent>
                 <div className="contact-info">
                     {Object.keys(experienceData).map((obj) => {
-                        if (obj !== "fullName") {
-                            return <p key={obj}>{experienceData[obj]}</p>;
-                        }
+                        return <p key={obj}>{experienceData[obj]}</p>;
                     })}
                 </div>
             </div>

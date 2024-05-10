@@ -1,0 +1,15 @@
+.gourd {
+    display: flex;
+    gap: 40px;
+}
+.left .right {
+    display: flex;
+    flex-direction: column;
+}
+.dates {
+    display: flex;
+}
+#B {
+    font-weight: 700;
+    font-size: 1.2rem;
+}

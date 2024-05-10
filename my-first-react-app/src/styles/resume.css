@@ -12,14 +12,14 @@
     border: 2px solid white;
     height: 1000px;
     min-width: 700px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(215, 107, 107, 0.1);
 }
 .header {
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: rgb(100, 100, 148);
     display: flex;
     flex-direction: column;
+    border-bottom: 2px solid black;
 }
 .header h2 {
     align-self: center;
@@ -30,11 +30,10 @@
     justify-content: center;
     gap: 2rem;
 }
-.educationResume {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.resumeHeader {
+    padding: 30px;
 }
-.educationResume h1 {
-    background-color: rgb(100, 100, 148);
+.resumeHeader h1 {
+    text-align: center;
+    background-color: var(--main-color);
 }

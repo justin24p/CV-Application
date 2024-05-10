@@ -1,9 +1,10 @@
-export default function EducationButton({ education }) {
-    console.log(education);
+export default function EducationButton({ education, tester }) {
     return (
         <div>
             {education.map((obj) => (
-                <button key={obj.school}>{obj.school}</button>
+                <button key={obj.id} onClick={() => tester(obj.id)}>
+                    {obj.school}
+                </button>
             ))}
         </div>
     );

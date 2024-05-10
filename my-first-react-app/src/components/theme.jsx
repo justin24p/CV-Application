@@ -5,5 +5,6 @@ export default function ThemeToggler() {
     const toggleThemeMode = () => {
         setthememode(!thememode);
     };
+    function changeColors() {}
     return <div className="toggler"></div>;
 }
