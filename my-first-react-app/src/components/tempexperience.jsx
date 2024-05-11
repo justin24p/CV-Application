@@ -1,5 +1,8 @@
 export default function TempExperienceForm({
     tempExperienceForm,
+    handleExperienceArrayChange,
+    cancelTempExperience,
+    deleteExperienceObj,
 }) {
     return (
         <div className="form">
@@ -10,7 +13,7 @@ export default function TempExperienceForm({
                 name="companyName"
                 id="companyName"
                 value={tempExperienceForm.companyName}
-                onChange={}
+                onChange={handleExperienceArrayChange}
             />
             <label htmlFor="Position Title">Position Title</label>
             <input
@@ -18,7 +21,7 @@ export default function TempExperienceForm({
                 name="positionTitle"
                 id="positionTitle"
                 value={tempExperienceForm.positionTitle}
-                onChange={}
+                onChange={handleExperienceArrayChange}
             />
             <label htmlFor="startDate">startDate number</label>
             <input
@@ -26,7 +29,7 @@ export default function TempExperienceForm({
                 name="startDate"
                 id="startDate"
                 value={tempExperienceForm.startDate}
-                onChange={}
+                onChange={handleExperienceArrayChange}
             />
             <label htmlFor="endDate">endDate</label>
             <input
@@ -34,7 +37,7 @@ export default function TempExperienceForm({
                 name="endDate"
                 id="endDate"
                 value={tempExperienceForm.endDate}
-                onChange={}
+                onChange={handleExperienceArrayChange}
             />
             <label htmlFor="location">location</label>
             <input
@@ -42,7 +45,7 @@ export default function TempExperienceForm({
                 name="location"
                 id="location"
                 value={tempExperienceForm.location}
-                onChange={}
+                onChange={handleExperienceArrayChange}
             />
             <label htmlFor="description">Description</label>
             <input
@@ -50,13 +53,13 @@ export default function TempExperienceForm({
                 name="description"
                 id="description"
                 value={tempExperienceForm.description}
-                onChange={}
+                onChange={handleExperienceArrayChange}
             />
             <div className="sectionButtons">
-                <button>Delete</button>
+                <button onClick={deleteExperienceObj}>Delete</button>
                 <div className="pairButtons">
-                    <button onClick={}>Cancel</button>
-                    <button onClick={}>Save</button>
+                    <button onClick={cancelTempExperience}>Cancel</button>
+                    <button onClick={cancelTempExperience}>Save</button>
                 </div>
             </div>
         </div>

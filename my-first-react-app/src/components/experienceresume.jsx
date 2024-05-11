@@ -6,6 +6,7 @@ export default function ExperienceResumeContent({ experience }) {
             {experience.map((exp, index) => (
                 <div className="gourd" key={index}>
                     <div className="left">
+                        <p>{exp.companyName}</p>
                         <div className="dates">
                             <p>{exp.startDate}</p>
                             <p>-</p>

@@ -112,6 +112,17 @@ function App() {
             id: "",
         });
     };
+    const clearTempExperience = () => {
+        setTempExperienceForm({
+            companyName: "",
+            positionTitle: "",
+            startDate: "",
+            endDate: "",
+            location: "",
+            description: "",
+            id: "",
+        });
+    };
     const clearExperience = () => {
         setExperienceData({
             companyName: "",
@@ -132,6 +143,9 @@ function App() {
     }
     function cancelTempEducation() {
         setShowTempForm(false);
+    }
+    function cancelTempExperience() {
+        setShowTempForm2(false);
     }
     const [showdiv, setShowDiv] = useState(false);
     const [showform, setShowForm] = useState(false);
@@ -169,12 +183,12 @@ function App() {
     };
     const handleExperienceArrayChange = (e) => {
         const { name, value } = e.target;
-        setTempEducationForm((prevdata) => ({
+        setTempExperienceForm((prevdata) => ({
             ...prevdata,
             [name]: value,
         }));
         const element = experience.find(
-            (exp) => exp.id === TempExperienceForm.id,
+            (exp) => exp.id === tempExperienceForm.id,
         );
         const index = experience.indexOf(element);
         const updatedExperience = [...experience];
@@ -207,7 +221,16 @@ function App() {
         clearTempEducation();
         setShowTempForm(false);
     };
+    const deleteExperienceObj = () => {
+        const id = tempExperienceForm.id;
+        const index = experience.findIndex((exp) => exp.id === id);
 
+        const updatedExperience = [...experience];
+        updatedExperience.splice(index, 1); // Remove 1 element at the found index
+        setExperience(updatedExperience);
+        clearTempExperience();
+        setShowTempForm2(false);
+    };
     const [showTempForm2, setShowTempForm2] = useState(false);
 
     return (
@@ -284,10 +307,24 @@ function App() {
                                             }
                                         ></ExperienceButton>
                                     )}
-                                {!showform2 && (
+                                {!showform2 && !showTempForm2 && (
                                     <button onClick={handleExperience}>
                                         Experience +
                                     </button>
+                                )}
+                                {showTempForm2 && (
+                                    <TempExperienceForm
+                                        tempExperienceForm={tempExperienceForm}
+                                        handleExperienceArrayChange={
+                                            handleExperienceArrayChange
+                                        }
+                                        cancelTempExperience={
+                                            cancelTempExperience
+                                        }
+                                        deleteExperienceObj={
+                                            deleteExperienceObj
+                                        }
+                                    ></TempExperienceForm>
                                 )}
                                 {showform2 && (
                                     <ExperienceForm
