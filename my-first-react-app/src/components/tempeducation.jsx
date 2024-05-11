@@ -1,8 +1,8 @@
-export default function EducationInput({
-    educationData,
-    handleEducationChange,
-    cancelEducation,
-    saveEducation,
+export default function TempEducationForm({
+    tempEducationForm,
+    handleEducationArrayChange,
+    cancelTempEducation,
+    deleteEducationObj,
 }) {
     return (
         <div className="form">
@@ -12,46 +12,46 @@ export default function EducationInput({
                 type="text"
                 name="school"
                 id="school"
-                value={educationData.school}
-                onChange={handleEducationChange}
+                value={tempEducationForm.school}
+                onChange={handleEducationArrayChange}
             />
             <label htmlFor="degree">degree</label>
             <input
                 type="text"
                 name="degree"
                 id="degree"
-                value={educationData.degree}
-                onChange={handleEducationChange}
+                value={tempEducationForm.degree}
+                onChange={handleEducationArrayChange}
             />
             <label htmlFor="startDate">startDate number</label>
             <input
                 type="text"
                 name="startDate"
                 id="startDate"
-                value={educationData.startDate}
-                onChange={handleEducationChange}
+                value={tempEducationForm.startDate}
+                onChange={handleEducationArrayChange}
             />
             <label htmlFor="endDate">endDate</label>
             <input
                 type="text"
                 name="endDate"
                 id="endDate"
-                value={educationData.endDate}
-                onChange={handleEducationChange}
+                value={tempEducationForm.endDate}
+                onChange={handleEducationArrayChange}
             />
             <label htmlFor="location">location</label>
             <input
                 type="text"
                 name="location"
                 id="location"
-                value={educationData.location}
-                onChange={handleEducationChange}
+                value={tempEducationForm.location}
+                onChange={handleEducationArrayChange}
             />
             <div className="sectionButtons">
-                <button onClick={cancelEducation}>Delete</button>
+                <button onClick={deleteEducationObj}>Delete</button>
                 <div className="pairButtons">
-                    <button onClick={cancelEducation}>Cancel</button>
-                    <button onClick={saveEducation}>Save</button>
+                    <button onClick={cancelTempEducation}>Cancel</button>
+                    <button onClick={cancelTempEducation}>Save</button>
                 </div>
             </div>
         </div>

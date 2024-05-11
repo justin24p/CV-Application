@@ -4,19 +4,24 @@ import { useState } from "react";
 import EducationInput from "./components/education";
 import ExperienceForm from "./components/experience";
 import EducationButton from "./components/educationcontainer";
+import ExperienceButton from "./components/experiencecontainer";
+import TempEducationForm from "./components/tempeducation";
 import "./App.css";
 import "./styles/navigation.css";
 import "./styles/resume.css";
 import { v4 as uuidv4 } from "uuid";
+import TempExperienceForm from "./components/tempexperience";
 
 function App() {
+    const [education, setEducation] = useState([]);
+    const [experience, setExperience] = useState([]);
     const [personalData, setPersonalData] = useState({
         fullName: "",
         email: "",
         phone: "",
         address: "",
     });
-    // Education Data
+
     const [educationData, setEducationData] = useState({
         school: "",
         degree: "",
@@ -25,26 +30,23 @@ function App() {
         location: "",
         id: "",
     });
-
-    const [education, setEducation] = useState([]);
-    const [experience, setExperience] = useState([]);
-
-    const saveEducation = () => {
-        setEducationData((educationData.id = uuidv4()));
-        setEducation((prevEducation) => [...prevEducation, educationData]);
-        setShowForm(false);
-        clearEducation();
-    };
-    const saveExperience = () => {
-        setExperience((prevExperience) => [...prevExperience, experienceData]);
-        setShowForm2(false);
-        clearExperience();
-    };
-
-    const handleEducation = () => {
-        setShowForm(true);
-    };
-    //TESTING
+    const [tempEducationForm, setTempEducationForm] = useState({
+        school: "",
+        degree: "",
+        startDate: "",
+        endDate: "",
+        location: "",
+        id: "",
+    });
+    const [tempExperienceForm, setTempExperienceForm] = useState({
+        companyName: "",
+        positionTitle: "",
+        startDate: "",
+        endDate: "",
+        location: "",
+        description: "",
+        id: "",
+    });
     const [experienceData, setExperienceData] = useState({
         companyName: "",
         positionTitle: "",
@@ -52,7 +54,23 @@ function App() {
         endDate: "",
         location: "",
         description: "",
+        id: "",
     });
+    const saveEducation = () => {
+        setEducationData((educationData.id = uuidv4()));
+        setEducation((prevEducation) => [...prevEducation, educationData]);
+        setShowForm(false);
+        clearEducation();
+    };
+    const saveExperience = () => {
+        setExperienceData((experienceData.id = uuidv4()));
+        setExperience((prevExperience) => [...prevExperience, experienceData]);
+        setShowForm2(false);
+        clearExperience();
+    };
+    const handleEducation = () => {
+        setShowForm(true);
+    };
     const handleExperienceChange = (e) => {
         const { name, value } = e.target;
         setExperienceData((prevdata) => ({
@@ -84,6 +102,16 @@ function App() {
             area: "",
         });
     };
+    const clearTempEducation = () => {
+        setTempEducationForm({
+            school: "",
+            degree: "",
+            startDate: "",
+            endDate: "",
+            location: "",
+            id: "",
+        });
+    };
     const clearExperience = () => {
         setExperienceData({
             companyName: "",
@@ -102,11 +130,12 @@ function App() {
         clearExperience();
         setShowForm2();
     }
-    // Toggle handler for education
-    // education button
+    function cancelTempEducation() {
+        setShowTempForm(false);
+    }
     const [showdiv, setShowDiv] = useState(false);
     const [showform, setShowForm] = useState(false);
-    //! converts from true to false
+
     const toggleDiv = () => {
         setShowDiv(!showdiv);
     };
@@ -121,11 +150,66 @@ function App() {
     const handleExperience = () => {
         setShowForm2(true);
     };
+    const handleEducationArrayChange = (e) => {
+        const { name, value } = e.target;
+        setTempEducationForm((prevdata) => ({
+            ...prevdata,
+            [name]: value,
+        }));
+        const element = education.find(
+            (edu) => edu.id === tempEducationForm.id,
+        );
+        const index = education.indexOf(element);
+        const updatedEducation = [...education];
+        updatedEducation[index] = {
+            ...updatedEducation[index],
+            [name]: value,
+        };
+        setEducation(updatedEducation);
+    };
+    const handleExperienceArrayChange = (e) => {
+        const { name, value } = e.target;
+        setTempEducationForm((prevdata) => ({
+            ...prevdata,
+            [name]: value,
+        }));
+        const element = experience.find(
+            (exp) => exp.id === TempExperienceForm.id,
+        );
+        const index = experience.indexOf(element);
+        const updatedExperience = [...experience];
+        updatedExperience[index] = {
+            ...updatedExperience[index],
+            [name]: value,
+        };
+        setExperience(updatedExperience);
+    };
+    // when a button is clicked
+    const [showTempForm, setShowTempForm] = useState(false);
+
     const tester = (id) => {
         const selectedEducation = education.find((edu) => edu.id === id);
-        setEducationData(selectedEducation);
-        handleEducation();
+        setTempEducationForm(selectedEducation);
+        setShowTempForm(true);
     };
+    const enableTempExperienceForm = (id) => {
+        const selectedExperience = experience.find((exp) => exp.id === id);
+        setTempExperienceForm(selectedExperience);
+        setShowTempForm2(true);
+    };
+    const deleteEducationObj = () => {
+        const id = tempEducationForm.id;
+        const index = education.findIndex((edu) => edu.id === id);
+
+        const updatedEducation = [...education];
+        updatedEducation.splice(index, 1); // Remove 1 element at the found index
+        setEducation(updatedEducation);
+        clearTempEducation();
+        setShowTempForm(false);
+    };
+
+    const [showTempForm2, setShowTempForm2] = useState(false);
+
     return (
         <div>
             <div className="nav">
@@ -148,16 +232,30 @@ function App() {
                         <button onClick={toggleDiv}>Education ˅</button>
                         {showdiv && (
                             <div>
-                                {education.length > 0 && (
-                                    <EducationButton
-                                        tester={tester}
-                                        education={education}
-                                    ></EducationButton>
-                                )}
-                                {!showform && (
+                                {education.length > 0 &&
+                                    !showTempForm &&
+                                    !showform && (
+                                        <EducationButton
+                                            tester={tester}
+                                            education={education}
+                                        ></EducationButton>
+                                    )}
+                                {!showform && !showTempForm && (
                                     <button onClick={handleEducation}>
                                         Education +
                                     </button>
+                                )}
+                                {showTempForm && (
+                                    <TempEducationForm
+                                        tempEducationForm={tempEducationForm}
+                                        handleEducationArrayChange={
+                                            handleEducationArrayChange
+                                        }
+                                        cancelTempEducation={
+                                            cancelTempEducation
+                                        }
+                                        deleteEducationObj={deleteEducationObj}
+                                    ></TempEducationForm>
                                 )}
                                 {showform && (
                                     <EducationInput
@@ -176,6 +274,16 @@ function App() {
                         <button onClick={toggleDiv2}>Experience ˅</button>
                         {showdiv2 && (
                             <div>
+                                {experience.length > 0 &&
+                                    !showTempForm2 &&
+                                    !showform2 && (
+                                        <ExperienceButton
+                                            experience={experience}
+                                            enableTempExperienceForm={
+                                                enableTempExperienceForm
+                                            }
+                                        ></ExperienceButton>
+                                    )}
                                 {!showform2 && (
                                     <button onClick={handleExperience}>
                                         Experience +
