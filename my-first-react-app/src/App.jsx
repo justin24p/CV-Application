@@ -252,9 +252,11 @@ function App() {
                         handlePersonalChange={handlePersonChange}
                     ></Personal>
                     <div className="education">
-                        <button onClick={toggleDiv}>Education ˅</button>
+                        <button className="topButton" onClick={toggleDiv}>
+                            Education ˅
+                        </button>
                         {showdiv && (
-                            <div>
+                            <div className="education">
                                 {education.length > 0 &&
                                     !showTempForm &&
                                     !showform && (
@@ -264,7 +266,10 @@ function App() {
                                         ></EducationButton>
                                     )}
                                 {!showform && !showTempForm && (
-                                    <button onClick={handleEducation}>
+                                    <button
+                                        onClick={handleEducation}
+                                        className="bottomButton"
+                                    >
                                         Education +
                                     </button>
                                 )}
@@ -293,10 +298,12 @@ function App() {
                             </div>
                         )}
                     </div>
-                    <div className=" experience">
-                        <button onClick={toggleDiv2}>Experience ˅</button>
+                    <div className="experience">
+                        <button className="topButton" onClick={toggleDiv2}>
+                            Experience ˅
+                        </button>
                         {showdiv2 && (
-                            <div>
+                            <div className="experience">
                                 {experience.length > 0 &&
                                     !showTempForm2 &&
                                     !showform2 && (
@@ -308,7 +315,10 @@ function App() {
                                         ></ExperienceButton>
                                     )}
                                 {!showform2 && !showTempForm2 && (
-                                    <button onClick={handleExperience}>
+                                    <button
+                                        className="bottomButton"
+                                        onClick={handleExperience}
+                                    >
                                         Experience +
                                     </button>
                                 )}

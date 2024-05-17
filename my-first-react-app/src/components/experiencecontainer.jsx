@@ -3,7 +3,7 @@ export default function ExperienceButton({
     enableTempExperienceForm,
 }) {
     return (
-        <div>
+        <div className="experience">
             {experience.map((obj) => (
                 <button
                     key={obj.id}

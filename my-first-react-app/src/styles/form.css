@@ -12,7 +12,7 @@
 .form input[type="number"],
 .form textarea {
     border-radius: 10px; /* Adjust the value to make it rounder */
-    padding: 8px 12px; /* Optional: Adjust padding for better appearance */
+    padding: 8px 12px;
     border-style: none;
     background-color: var(--main-color);
     color: var(--font-color);
